@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="A2x\BlogBundle\Entity\PostRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Post
 {
@@ -153,10 +154,11 @@ class Post
      *
      * @param \DateTime $createdAt
      * @return Post
+     * @ORM\PrePersist
      */
-    public function setCreated($created)
+    public function setCreated()
     {
-        $this->created = $created;
+        $this->created = new \DateTime('now');
 
         return $this;
     }
@@ -199,10 +201,11 @@ class Post
      *
      * @param \DateTime $updated
      * @return Post
+     * @ORM\PreUpdate()
      */
-    public function setUpdated($updated)
+    public function setUpdated()
     {
-        $this->updated = $updated;
+        $this->updated = new \DateTime('now');
 
         return $this;
     }
