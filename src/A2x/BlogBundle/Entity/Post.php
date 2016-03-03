@@ -60,9 +60,9 @@ class Post
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="published", type="boolean", nullable=false)
+     * @ORM\Column(name="published", type="boolean", nullable=true)
      */
-    private $published = false;
+    private $published = true;
 
     public function __toString() {
         return $this->title;
@@ -159,6 +159,7 @@ class Post
     public function setCreated()
     {
         $this->created = new \DateTime('now');
+        $this->updated = new \DateTime('now');
 
         return $this;
     }

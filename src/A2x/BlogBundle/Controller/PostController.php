@@ -102,7 +102,7 @@ class PostController extends Controller
     /**
      * Finds and displays a Post entity.
      *
-     * @Route("/{id}", name="_show")
+     * @Route("/show/{id}", name="_show")
      * @Method("GET")
      * @Template()
      */
@@ -111,6 +111,7 @@ class PostController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entity = $em->getRepository('A2xBlogBundle:Post')->find($id);
+
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
